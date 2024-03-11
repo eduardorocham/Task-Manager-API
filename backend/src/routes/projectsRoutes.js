@@ -11,5 +11,14 @@ projectsRoutes.get("/projects", (req, res) =>
 projectsRoutes.post("/project", (req, res) =>
   projectController.create(req, res)
 );
+projectsRoutes.put("/project/:id", (req, res) =>
+  projectController.update(req, res)
+);
+projectsRoutes.put("/project/:id", (req, res) =>
+  projectController.update(req, res)
+);
+projectsRoutes.delete("/project/:id", (req, res) =>
+  projectController.delete(req, res)
+);
 
 export default projectsRoutes;
