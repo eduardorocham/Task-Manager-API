@@ -2,9 +2,9 @@ import Services from "./Services.js";
 import { user } from "../models/User.js";
 
 class UserServices extends Services {
-    constructor() {
-        super(user)
-    }
+  constructor() {
+    super(user);
+  }
 }
 
-export default UserServices
+export default UserServices;

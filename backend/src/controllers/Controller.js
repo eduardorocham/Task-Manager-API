@@ -13,7 +13,7 @@ class Controller {
     }
   }
 
-  async getOndeById(req, res) {
+  async getOneById(req, res) {
     const { id } = req.params;
 
     try {

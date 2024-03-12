@@ -1,12 +1,12 @@
 import Controller from "./Controller.js";
-import UserServices from "../services/UserService.js";
+import UserServices from "../services/UserServices.js";
 
-const userServices = new UserServices()
+const userServices = new UserServices();
 
 class UserController extends Controller {
-    constructor() {
-        super(userServices, "user")
-    }
+  constructor() {
+    super(userServices, "user");
+  }
 }
 
-export default UserController
+export default UserController;

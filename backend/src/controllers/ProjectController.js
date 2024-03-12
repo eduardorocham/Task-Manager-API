@@ -1,5 +1,5 @@
 import Controller from "./Controller.js";
-import ProjectServices from "../services/ProjectService.js";
+import ProjectServices from "../services/ProjectServices.js";
 
 const projectServices = new ProjectServices();
 
