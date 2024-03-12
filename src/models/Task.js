@@ -8,12 +8,16 @@ const taskSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
   },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comments" }],
 });
 
 taskSchema.pre("find", function (next) {
   this.populate({
     path: "assigned_to",
     select: "-email -password",
+  }).populate({
+    path: "comments",
+    select: "-task_id",
   });
   next();
 });

@@ -4,6 +4,7 @@ const commentSchema = new mongoose.Schema({
   id: { type: mongoose.Schema.Types.ObjectId },
   text: { type: String, required: [true, "text field is required"] },
   posted_by: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+  task_id: { type: mongoose.Schema.Types.ObjectId, ref: "tasks" },
 });
 
 commentSchema.pre("find", function (next) {

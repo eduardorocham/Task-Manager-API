@@ -12,7 +12,7 @@ commentsRoutes.get("/comment/:id", (req, res) =>
   commentController.getOneById(req, res)
 );
 commentsRoutes.post("/comment", (req, res) =>
-  commentController.create(req, res)
+  commentController.addComment(req, res)
 );
 commentsRoutes.put("/comment/:id", (req, res) =>
   commentController.update(req, res)
