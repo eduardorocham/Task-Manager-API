@@ -3,6 +3,7 @@ import usersRoutes from "./usersRoutes.js";
 import accountsRouter from "./accountsRoutes.js";
 import projectsRoutes from "./projectsRoutes.js";
 import commentsRoutes from "./commentsRoutes.js";
+import tasksRoutes from "./tasksRoutes.js";
 
 const routes = (app) => {
   app
@@ -14,7 +15,8 @@ const routes = (app) => {
     accountsRouter,
     usersRoutes,
     projectsRoutes,
-    commentsRoutes
+    commentsRoutes,
+    tasksRoutes
   );
 };
 

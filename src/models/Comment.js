@@ -7,7 +7,10 @@ const commentSchema = new mongoose.Schema({
 });
 
 commentSchema.pre("find", function (next) {
-  this.populate("posted_by");
+  this.populate({
+    path: "posted_by",
+    select: "-email -password",
+  });
   next();
 });
 
