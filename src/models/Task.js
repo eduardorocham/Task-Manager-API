@@ -9,6 +9,7 @@ const taskSchema = new mongoose.Schema({
     ref: "users",
   },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comments" }],
+  column_id: { type: mongoose.Schema.Types.ObjectId, ref: "columns" },
 });
 
 taskSchema.pre("find", function (next) {

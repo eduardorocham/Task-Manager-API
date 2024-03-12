@@ -4,6 +4,7 @@ import accountsRouter from "./accountsRoutes.js";
 import projectsRoutes from "./projectsRoutes.js";
 import commentsRoutes from "./commentsRoutes.js";
 import tasksRoutes from "./tasksRoutes.js";
+import columnsRoutes from "./columnsRoutes.js";
 
 const routes = (app) => {
   app
@@ -16,7 +17,8 @@ const routes = (app) => {
     usersRoutes,
     projectsRoutes,
     commentsRoutes,
-    tasksRoutes
+    tasksRoutes,
+    columnsRoutes
   );
 };
 
