@@ -8,6 +8,9 @@ const projectsRoutes = Router();
 projectsRoutes.get("/projects", (req, res) =>
   projectController.getAll(req, res)
 );
+projectsRoutes.get("/projects/:id", (req, res) =>
+  projectController.getOneById(req, res)
+);
 projectsRoutes.post("/project", (req, res) =>
   projectController.create(req, res)
 );

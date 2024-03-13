@@ -9,10 +9,14 @@ const projectSchema = new mongoose.Schema({
       ref: "users",
     },
   ],
+  columns: [{ type: mongoose.Schema.Types.ObjectId, ref: "columns" }],
 });
 
 projectSchema.pre("find", function (next) {
-  this.populate("responsibles");
+  this.populate("responsibles").populate({
+    path: "columns",
+    select: "-project_id",
+  });
   next();
 });
 

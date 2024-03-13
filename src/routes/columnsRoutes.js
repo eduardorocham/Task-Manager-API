@@ -9,7 +9,9 @@ columnsRoutes.get("/columns", (req, res) => columnController.getAll(req, res));
 columnsRoutes.get("/column/:id", (req, res) =>
   columnController.getOneById(req, res)
 );
-columnsRoutes.post("/column", (req, res) => columnController.create(req, res));
+columnsRoutes.post("/column", (req, res) =>
+  columnController.addColumn(req, res)
+);
 columnsRoutes.put("/column/:id", (req, res) =>
   columnController.update(req, res)
 );
