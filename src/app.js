@@ -1,14 +1,17 @@
-import express from "express";
-import routes from "./routes/index.js";
-import connectDataBase from "./config/dbConnetion.js";
+// import express from "express";
+// import routes from "./routes/index.js";
+// import connectDataBase from "./config/dbConnetion.js";
+const express = require("express")
+const routes = require("./routes")
 
-const connection = await connectDataBase()
 
-connection.on("error", (error) => console.error("An error has occcured when trying to connect to the database", error))
-connection.once("open", () => console.log("Connection with database made with success!"))
+// const connection = await connectDataBase()
+
+// connection.on("error", (error) => console.error("An error has occcured when trying to connect to the database", error))
+// connection.once("open", () => console.log("Connection with database made with success!"))
 
 const app = express()
 
 routes(app)
 
-export default app
+module.exports = app

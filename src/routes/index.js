@@ -1,10 +1,11 @@
-import express from "express";
-import usersRoutes from "./usersRoutes.js";
-import accountsRouter from "./accountsRoutes.js";
-import projectsRoutes from "./projectsRoutes.js";
-import commentsRoutes from "./commentsRoutes.js";
-import tasksRoutes from "./tasksRoutes.js";
-import columnsRoutes from "./columnsRoutes.js";
+// import express from "express";
+// import usersRoutes from "./usersRoutes.js";
+// import accountsRouter from "./accountsRoutes.js";
+// import projectsRoutes from "./projectsRoutes.js";
+// import commentsRoutes from "./commentsRoutes.js";
+// import tasksRoutes from "./tasksRoutes.js";
+// import columnsRoutes from "./columnsRoutes.js";
+const express = require("express")
 
 const routes = (app) => {
   app
@@ -13,13 +14,13 @@ const routes = (app) => {
 
   app.use(
     express.json(),
-    accountsRouter,
-    usersRoutes,
-    projectsRoutes,
-    commentsRoutes,
-    tasksRoutes,
-    columnsRoutes
+    // accountsRouter,
+    // usersRoutes,
+    // projectsRoutes,
+    // commentsRoutes,
+    // tasksRoutes,
+    // columnsRoutes
   );
 };
 
-export default routes;
+module.exports = routes
