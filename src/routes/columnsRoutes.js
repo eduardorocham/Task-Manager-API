@@ -1,5 +1,5 @@
-import { Router } from "express";
-import ColumnController from "../controllers/ColumnController.js";
+const { Router } = require("express");
+const ColumnController = require("../controllers/ColumnController");
 
 const columnController = new ColumnController();
 
@@ -19,4 +19,4 @@ columnsRoutes.delete("/column/:id", (req, res) =>
   columnController.delete(req, res)
 );
 
-export default columnsRoutes;
+module.exports = columnsRoutes;

@@ -1,24 +1,11 @@
-import Services from "./Services.js";
-import ProjectServices from "./ProjectServices.js";
-import { column } from "../models/Column.js";
-
-const projectServices = new ProjectServices();
+const Services = require("./Services");
+const database = require("../models");
+const column = database.columns;
 
 class ColumnServices extends Services {
   constructor() {
     super(column);
   }
-
-  async createColumn(dataRegister) {
-    const newColumn = await super.createRegister(dataRegister);
-    const projectFound = await projectServices.getOneRegisterById(
-      newColumn.project_id
-    );
-    projectFound.columns.push(newColumn._id);
-    projectFound.save();
-
-    return newColumn;
-  }
 }
 
-export default ColumnServices;
+module.exports = ColumnServices;

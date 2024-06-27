@@ -8,6 +8,7 @@
 const express = require("express")
 const usersRoutes = require("./usersRoutes")
 const projectsRoutes = require("./projectsRoutes")
+const columnsRoutes = require("./columnsRoutes")
 
 const routes = (app) => {
   app
@@ -19,9 +20,10 @@ const routes = (app) => {
     // accountsRouter,
     usersRoutes,
     projectsRoutes,
+    columnsRoutes
     // commentsRoutes,
     // tasksRoutes,
-    // columnsRoutes
+    
   );
 };
 
