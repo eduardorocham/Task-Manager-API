@@ -1,5 +1,5 @@
-import { Router } from "express";
-import ProjectController from "../controllers/ProjectController.js";
+const { Router } = require("express");
+const ProjectController = require("../controllers/ProjectController.js");
 
 const projectController = new ProjectController();
 
@@ -24,4 +24,4 @@ projectsRoutes.delete("/project/:id", (req, res) =>
   projectController.delete(req, res)
 );
 
-export default projectsRoutes;
+module.exports = projectsRoutes;

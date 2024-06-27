@@ -7,6 +7,7 @@
 // import columnsRoutes from "./columnsRoutes.js";
 const express = require("express")
 const usersRoutes = require("./usersRoutes")
+const projectsRoutes = require("./projectsRoutes")
 
 const routes = (app) => {
   app
@@ -17,7 +18,7 @@ const routes = (app) => {
     express.json(),
     // accountsRouter,
     usersRoutes,
-    // projectsRoutes,
+    projectsRoutes,
     // commentsRoutes,
     // tasksRoutes,
     // columnsRoutes

@@ -1,5 +1,5 @@
-import Controller from "./Controller.js";
-import ProjectServices from "../services/ProjectServices.js";
+const Controller = require("./Controller");
+const ProjectServices = require("../services/ProjectServices");
 
 const projectServices = new ProjectServices();
 
@@ -27,4 +27,4 @@ class ProjectController extends Controller {
   // }
 }
 
-export default ProjectController;
+module.exports = ProjectController;

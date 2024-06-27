@@ -1,5 +1,6 @@
-import Services from "./Services.js";
-import { project } from "../models/Project.js";
+const Services = require("./Services");
+const database = require("../models");
+const project = database.projects;
 
 class ProjectServices extends Services {
   constructor() {
@@ -7,4 +8,4 @@ class ProjectServices extends Services {
   }
 }
 
-export default ProjectServices;
+module.exports = ProjectServices;
