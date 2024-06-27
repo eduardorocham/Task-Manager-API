@@ -14,6 +14,9 @@ projectsRoutes.get("/projects/:id", (req, res) =>
 projectsRoutes.post("/project", (req, res) =>
   projectController.create(req, res)
 );
+projectsRoutes.post("/project/add-user", (req, res) =>
+  projectController.addUserToProject(req, res)
+)
 projectsRoutes.put("/project/:id", (req, res) =>
   projectController.update(req, res)
 );

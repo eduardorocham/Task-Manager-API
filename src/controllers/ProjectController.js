@@ -8,23 +8,30 @@ class ProjectController extends Controller {
     super(projectServices, "project");
   }
 
-  // async getOneProject(req, res) {
-  //   const { id } = req.params;
-
+  // async getAllProjects(req, res) {
   //   try {
-  //     const project = await projectServices.getOneProjectById(id);
-
-  //     if (project !== null) {
-  //       return res.status(200).json(project);
-  //     } else {
-  //       return res
-  //         .status(404)
-  //         .json({ message: `${this.entityName} don't found` });
-  //     }
+  //     const projectsList = await projectServices.getAllProjects();
+  //     return res.status(200).json(projectsList);
   //   } catch (error) {
   //     return res.status(500).json({ error: error.message });
   //   }
   // }
+
+  async addUserToProject(req, res) {
+    const { user_id, project_id } = req.body;
+
+    try {
+      const newRegister = await projectServices.addUserToProject({ user_id, project_id });
+
+      const response = {};
+      response.message = `User ${user_id} added with success to project ${project_id}!`;
+      response[this.entityName] = newRegister;
+
+      return res.status(201).json(response);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = ProjectController;
