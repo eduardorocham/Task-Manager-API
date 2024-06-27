@@ -6,6 +6,7 @@
 // import tasksRoutes from "./tasksRoutes.js";
 // import columnsRoutes from "./columnsRoutes.js";
 const express = require("express")
+const usersRoutes = require("./usersRoutes")
 
 const routes = (app) => {
   app
@@ -15,7 +16,7 @@ const routes = (app) => {
   app.use(
     express.json(),
     // accountsRouter,
-    // usersRoutes,
+    usersRoutes,
     // projectsRoutes,
     // commentsRoutes,
     // tasksRoutes,

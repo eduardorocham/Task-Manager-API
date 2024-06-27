@@ -1,27 +1,40 @@
+const uuid = require("uuid")
+
 class Services {
   constructor(model) {
     this.model = model;
   }
 
   async getAllRegisters() {
-    return this.model.find({});
+    return this.model.findAll({});
   }
 
   async getOneRegisterById(id) {
-    return this.model.findById(id);
+    return this.model.findByPk(id);
   }
 
   async createRegister(registerData) {
-    return this.model.create(registerData);
+    return this.model.create({
+      id: uuid.v4(),
+      ...registerData
+    });
   }
 
   async updateRegister(id, updatedData) {
-    return this.model.findByIdAndUpdate(id, updatedData);
+    const register = await this.model.findByPk(id);
+    if (register) {
+      return register.update(updatedData);
+    }
+    return null;
   }
 
   async deleteRegister(id) {
-    return this.model.findByIdAndDelete(id);
+    const register = await this.model.findByPk(id);
+    if (register) {
+      return register.destroy();
+    }
+    return null;
   }
 }
 
-export default Services;
+module.exports = Services;

@@ -1,5 +1,6 @@
-import Services from "./Services.js";
-import { user } from "../models/User.js";
+const Services = require("./Services")
+const database = require("../models")
+const user = database.users;
 
 class UserServices extends Services {
   constructor() {
@@ -7,4 +8,4 @@ class UserServices extends Services {
   }
 }
 
-export default UserServices;
+module.exports = UserServices
