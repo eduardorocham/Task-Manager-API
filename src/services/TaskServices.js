@@ -7,14 +7,48 @@ class TaskServices extends Services {
     super(task);
   }
 
-  // async createTask(registerData) {
-  //   const newTask = await super.createRegister(registerData);
-  //   const column = await columnServices.getOneRegisterById(newTask.column_id);
-  //   column.tasks.push(newTask._id);
-  //   column.save();
+  async getAllTasks() {
+    return task.findAll({
+      include: [
+        {
+          model: database.columns,
+          attributes: ['id', 'name']
+        },
+        {
+          model: database.users,
+          attributes: [
+            'id',
+            'username',
+            'first_name',
+            'last_name'
+          ]
+        }
+      ]
+    });
+  }
 
-  //   return newTask;
-  // }
+  async getOneTask(id) {
+    return task.findOne({
+      include: [
+        {
+          model: database.columns,
+          attributes: ['id', 'name']
+        },
+        {
+          model: database.users,
+          attributes: [
+            'id',
+            'username',
+            'first_name',
+            'last_name'
+          ]
+        }
+      ],
+      where: {
+        id
+      }
+    });
+  }
 }
 
 module.exports = TaskServices;

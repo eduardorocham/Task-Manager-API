@@ -7,21 +7,32 @@ class TaskController extends Controller {
     super(taskServices, "task");
   }
 
-  // async addTask(req, res) {
-  //   const dataToCreate = req.body;
+  async getAllTasks(req, res) {
+    try {
+      const tasksList = await taskServices.getAllTasks();
+      return res.status(200).json(tasksList);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
 
-  //   try {
-  //     const newTask = await taskServices.createTask(dataToCreate);
+  async getOneTask(req, res) {
+    const { id } = req.params;
 
-  //     const response = {};
-  //     response.message = `${this.entityName} created with success!`;
-  //     response[this.entityName] = newTask;
+    try {
+      const task = await taskServices.getOneTask(id);
 
-  //     return res.status(201).json(response);
-  //   } catch (error) {
-  //     return res.status(500).json({ error: error.message });
-  //   }
-  // }
+      if (task !== null) {
+        return res.status(200).json(task);
+      } else {
+        return res
+          .status(404)
+          .json({ message: `${this.entityName} don't found` });
+      }
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = TaskController;

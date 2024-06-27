@@ -5,7 +5,7 @@ class Services {
     this.model = model;
   }
 
-  async getAllRegisters() {
+  async getAll() {
     return this.model.findAll({});
   }
 

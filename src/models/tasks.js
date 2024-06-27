@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'tasks',
+    defaultScope: {
+      attributes: {
+        exclude: ['column_id', 'assigned_to']
+      }
+    }
   });
   return tasks;
 };

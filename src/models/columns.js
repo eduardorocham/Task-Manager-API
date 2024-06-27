@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'columns',
+    defaultScope: {
+      attributes: {
+        exclude: ['project_id']
+      }
+    }
   });
   return columns;
 };
