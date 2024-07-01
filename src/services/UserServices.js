@@ -29,6 +29,7 @@ class UserServices extends Services {
         first_name: dto.first_name,
         last_name: dto.last_name,
         email: dto.email,
+        group_id: dto.group_id,
         password: passwordHash
       })
 

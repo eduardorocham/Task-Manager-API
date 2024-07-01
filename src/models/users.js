@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         as: 'projects_user',
         foreignKey: 'user_id'
       })
+      users.belongsTo(models.groups, {
+        foreignKey: 'group_id'
+      })
       users.hasMany(models.tasks, {
         foreignKey: 'assigned_to'
       })
@@ -25,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'users',
