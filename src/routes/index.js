@@ -1,4 +1,5 @@
 const express = require("express")
+const authRoutes = require("./authRoutes")
 const usersRoutes = require("./usersRoutes")
 const projectsRoutes = require("./projectsRoutes")
 const columnsRoutes = require("./columnsRoutes")
@@ -11,7 +12,7 @@ const routes = (app) => {
 
   app.use(
     express.json(),
-    // accountsRouter,
+    authRoutes,
     usersRoutes,
     projectsRoutes,
     columnsRoutes,

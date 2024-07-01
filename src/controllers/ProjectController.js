@@ -28,9 +28,13 @@ class ProjectController extends Controller {
     const { id } = req.params;
 
     try {
-      const result = await projectServices.getUsersProject(id);
+      const project = await projectServices.getUsersProject(id);
 
-      return res.status(200).json(result);
+      if (!project) {
+        return res.status(404).json({ message: `Project with id ${id} don't found` });
+      }
+
+      return res.status(200).json(project);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
