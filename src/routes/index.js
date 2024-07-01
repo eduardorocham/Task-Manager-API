@@ -5,6 +5,7 @@ const projectsRoutes = require("./projectsRoutes")
 const columnsRoutes = require("./columnsRoutes")
 const tasksRoutes = require("./tasksRoutes")
 const groupsRoutes = require("./groupsRoutes")
+const permissionsRoutes = require("./permissionsRoutes")
 const authMiddleware = require('../middlewares/auth')
 
 const routes = (app) => {
@@ -26,7 +27,8 @@ const routes = (app) => {
   protectedRoutes.use(projectsRoutes);
   protectedRoutes.use(columnsRoutes);
   protectedRoutes.use(tasksRoutes);
-  projectsRoutes.use(groupsRoutes);
+  protectedRoutes.use(groupsRoutes);
+  protectedRoutes.use(permissionsRoutes);
 
   app.use(
     express.json(),
