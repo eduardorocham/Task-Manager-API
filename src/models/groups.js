@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       groups.hasMany(models.users, {
         foreignKey: 'group_id'
       })
+      groups.belongsToMany(models.permissions, {
+        through: models.permissions_group,
+        as: 'permission_group',
+        foreignKey: 'group_id'
+      })
     }
   }
   groups.init({

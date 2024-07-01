@@ -13,6 +13,9 @@ groupsRoutes.get("/groups/:id", (req, res) =>
 groupsRoutes.post("/group", (req, res) =>
     groupController.create(req, res)
 );
+groupsRoutes.post("/group/:id/permission", (req, res) =>
+    groupController.addPermissionToGroup(req, res)
+);
 groupsRoutes.put("/group/:id", (req, res) =>
     groupController.update(req, res)
 );
