@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       users.belongsToMany(models.projects, {
         through: models.users_projects,
-        as: 'user_projects',
+        as: 'projects_user',
         foreignKey: 'user_id'
       })
       users.hasMany(models.tasks, {

@@ -8,15 +8,6 @@ class ProjectController extends Controller {
     super(projectServices, "project");
   }
 
-  // async getAllProjects(req, res) {
-  //   try {
-  //     const projectsList = await projectServices.getAllProjects();
-  //     return res.status(200).json(projectsList);
-  //   } catch (error) {
-  //     return res.status(500).json({ error: error.message });
-  //   }
-  // }
-
   async addUserToProject(req, res) {
     const { user_id, project_id } = req.body;
 
@@ -32,6 +23,18 @@ class ProjectController extends Controller {
       return res.status(500).json({ error: error.message });
     }
   }
-}
+
+  async getUsersProject(req, res) {
+    const { id } = req.params;
+
+    try {
+      const result = await projectServices.getUsersProject(id);
+
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+ }
 
 module.exports = ProjectController;
