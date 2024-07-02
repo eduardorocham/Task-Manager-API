@@ -2,7 +2,7 @@ services:
   db:
     image: mysql:8.0.30-debian
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tasks
+      MYSQL_ROOT_PASSWORD: ${DEV_DB_PASSWORD}
+      MYSQL_DATABASE: ${DEV_DB_NAME}
     ports:
       - 3306:3306
