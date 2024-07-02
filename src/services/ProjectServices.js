@@ -13,7 +13,7 @@ class ProjectServices extends Services {
     return usersProject.create(dto);
   }
 
-  async getUsersProject(dto) {
+  async getProjectUsers(dto) {
     return project.findByPk(dto, {
       include: [
         {

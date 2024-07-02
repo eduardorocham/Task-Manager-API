@@ -12,7 +12,7 @@ class ProjectController extends Controller {
     const { user_id, project_id } = req.body;
 
     try {
-      const newRegister = await projectServices.addUserToProject({ user_id, project_id });
+      const newRegister = await this.entityService.addUserToProject({ user_id, project_id });
 
       const response = {};
       response.message = `User ${user_id} added with success to project ${project_id}!`;
@@ -24,11 +24,11 @@ class ProjectController extends Controller {
     }
   }
 
-  async getUsersProject(req, res) {
+  async getProjectUsers(req, res) {
     const { id } = req.params;
 
     try {
-      const project = await projectServices.getUsersProject(id);
+      const project = await this.entityService.getProjectUsers(id);
 
       if (!project) {
         return res.status(404).json({ message: `Project with id ${id} don't found` });

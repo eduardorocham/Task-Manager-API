@@ -8,7 +8,7 @@ class ColumnServices extends Services {
   }
 
   getAllColumns() {
-    return column.findAll({
+    return this.model.findAll({
       include: [
         {
           model: database.projects,
@@ -19,7 +19,7 @@ class ColumnServices extends Services {
   }
 
   getOneColum(id) {
-    return column.findOne({
+    return this.model.findOne({
       include: [
         {
           model: database.projects,
@@ -30,6 +30,24 @@ class ColumnServices extends Services {
         id
       }
     })
+  }
+
+  getColumnWithProjectData(dto) {
+    return this.model.findOne({
+      where: {
+        id: dto
+      },
+      include: {
+        model: database.projects,
+        include: {
+          model: database.users,
+          as: 'users_project',
+          through: {
+            attributes: []
+          }
+        }
+      }
+    });
   }
 }
 

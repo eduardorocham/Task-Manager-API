@@ -12,9 +12,8 @@ projectsRoutes.get("/projects/:id", (req, res) =>
   projectController.getOneById(req, res)
 );
 projectsRoutes.get("/project/:id/users", (req, res) =>
-  projectController.getUsersProject(req, res)
+  projectController.getProjectUsers(req, res)
 );
-
 projectsRoutes.post("/project", (req, res) =>
   projectController.create(req, res)
 );
