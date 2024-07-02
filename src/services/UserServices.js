@@ -9,6 +9,31 @@ class UserServices extends Services {
     super(user);
   }
 
+  async getAllUsers(dto) {
+    return user.findAll({
+      include: [
+        {
+          model: database.groups,
+          attributes: ['id', 'name']
+        }
+      ]
+    })
+  }
+
+  async getOneUser(id) {
+    return user.findOne({
+      include: [
+        {
+          model: database.groups,
+          attributes: ['id', 'name']
+        }
+      ],
+      where: {
+        id
+      }
+    })
+  }
+
   async createUser(dto) {
     const user = await database.users.findOne({
       where: {

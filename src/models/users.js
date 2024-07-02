@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'users',
     defaultScope: {
       attributes: {
-        exclude: ['password']
+        exclude: ['password', 'group_id']
       }
     }
   });

@@ -23,6 +23,22 @@ class GroupController extends Controller {
           return res.status(500).json({ error: error.message });
         }
     }
+
+    async getPermissionsGroup(req, res) {
+      const { id } = req.params;
+  
+      try {
+        const group = await groupsServices.getPermissionsGroup(id);
+  
+        if (!group) {
+          return res.status(404).json({ message: `Group with id ${id} don't found` });
+        }
+  
+        return res.status(200).json(group);
+      } catch (error) {
+        return res.status(500).json({ error: error.message });
+      }
+    }
 }
 
 module.exports = GroupController

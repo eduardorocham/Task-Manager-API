@@ -10,6 +10,9 @@ groupsRoutes.get("/groups", (req, res) =>
 groupsRoutes.get("/groups/:id", (req, res) =>
     groupController.getOneById(req, res)
 );
+groupsRoutes.get("/groups/:id/permissions", (req, res) =>
+    groupController.getPermissionsGroup(req, res)
+);
 groupsRoutes.post("/group", (req, res) =>
     groupController.create(req, res)
 );
