@@ -8,7 +8,7 @@ const usersRoutes = Router()
 
 usersRoutes.get("/users", permissions(["list_users"]), (req, res) => userController.getAllUsers(req, res))
 usersRoutes.get("/users/:id", (req, res) => userController.getOneUser(req, res))
-usersRoutes.post("/user", permissions(["create_user"]), (req, res) => userController.createUser(req, res))
+usersRoutes.post("/users", permissions(["create_user"]), (req, res) => userController.createUser(req, res))
 usersRoutes.put("/users/:id", (req, res) => userController.update(req, res))
 usersRoutes.delete("/users/:id", (req, res) => userController.delete(req, res))
 

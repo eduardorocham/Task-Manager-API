@@ -58,7 +58,9 @@ class UserServices extends Services {
         password: passwordHash
       })
 
-      return newUser;
+      const newUserPlain = newUser.toJSON();
+      const { password, ...userWithoutPassword } = newUserPlain;
+      return userWithoutPassword;
     } catch(error) {
       throw new Error(`Error registering user: ${error}`)
     }

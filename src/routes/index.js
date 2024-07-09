@@ -7,6 +7,7 @@ const tasksRoutes = require("./tasksRoutes")
 const groupsRoutes = require("./groupsRoutes")
 const permissionsRoutes = require("./permissionsRoutes")
 const authMiddleware = require('../middlewares/auth')
+const docsRoutes = require('../routes/docsRoutes')
 
 const routes = (app) => {
   app
@@ -16,7 +17,8 @@ const routes = (app) => {
   // Rotas públicas
   app.use(
     express.json(), 
-    authRoutes
+    authRoutes,
+    docsRoutes
   );
 
   const protectedRoutes = express.Router();
