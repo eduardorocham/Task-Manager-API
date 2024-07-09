@@ -8,8 +8,6 @@ Bem-vindo à Task Manager API, uma API que permite gerenciar tarefas de forma ef
 - [Instalação](#instalação)
 - [Uso](#uso)
 - [Documentação](#documentação)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
 
 ## Introdução
 
@@ -30,7 +28,7 @@ Para instalar a Task Manager API, siga as instruções abaixo:
 git clone https://github.com/eduardorocham/Task-Manager-API.git
 
 # Navegar até o diretório do projeto
-cd task-manager-api
+cd Task-Manager-Api
 
 # Instalar as dependências
 npm install
