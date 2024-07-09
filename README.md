@@ -35,3 +35,22 @@ cd task-manager-api
 # Instalar as dependências
 npm install
 ```
+
+## Uso
+
+Para iniciar a API localmente, execute o seguinte comando:
+
+```bash
+npm run dev
+```
+
+A API estará disponível em http://localhost:3333 por padrão.
+
+## Documentação
+
+A documentação completa da API está disponível via Swagger. Para visualizar a documentação, siga os passos abaixo:
+
+    1. Inicie a API localmente.
+    2. Abra seu navegador e navegue até http://localhost:3333/api-docs
+
+A documentação do Swagger inclui detalhes sobre todos os endpoints, parâmetros, respostas e exemplos de requisições.
