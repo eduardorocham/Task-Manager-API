@@ -400,6 +400,261 @@ module.exports = {
                 }
             }
         },
+        "/projects": {
+            "get": {
+                "summary": "Listagem de projetos",
+                "description": "Essa rota será responsável por listar todas os projetos existentes no sistema",
+                "tags": ["Projetos"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": '#/components/schemas/Usuario'
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cadastro de projetos",
+                "description": "Essa rota será responsável por cadastrar um novo projeto, 'name' é o único parâmetro necessário no corpo da requisição.",
+                "tags": ["Projetos"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "projeto": {
+                                    "value": {
+                                        "name": "UI/UX do site",
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "project created with success!"
+                                        },
+                                        "project": {
+                                            "$ref": '#/components/schemas/Projeto'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/projects/{id}/users": {
+            "get": {
+                "summary": "Retorna os responsáveis de um projeto",
+                "description": "Retorna os dados de um projeto com a lista de todos os usuários vinculados a ele.",
+                "tags": ["Projetos"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do projeto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": '#/components/schemas/ProjetoComResponsaveis'
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+        },
+        "/projects/{id}": {
+            "get": {
+                "summary": "Busca um projeto por ID",
+                "description": "Essa rota será responsável por buscar um projeto pelo ID.",
+                "tags": ["Projetos"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do projeto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": '#/components/schemas/Projeto'
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Edita o nome de um projeto",
+                "description": "Essa rota poderá ser utilizado caso se deseje alterar o nome do projeto.",
+                "tags": ["Projetos"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do projeto",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "projeto": {
+                                    "value": {
+                                        "name": "Novo nome do projeto",
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "project width id 02fd385c-f024-44f1-8da3-1a0fc1178a1a updated with success!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta um projeto",
+                "description": "Essa rota será responsável por deletar um projeto",
+                "tags": ["Projetos"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do projeto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "project width id 15e4acbd-4991-4d89-95a0-9787467e9581 deleted with success!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/projects/add-user": {
+            "post": {
+                "summary": "Vincula responsável a um projeto",
+                "description": "Essa rota será responsável por vincular um usuário a um projeto",
+                "tags": ["Projetos"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "projeto": {
+                                    "value": {
+                                        "project_id": "c2cffa18-b953-45ef-870e-1465bd27421e",
+                                        "user_id": "02fd385c-f024-44f1-8da3-1a0fc1178a1a"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User 02fd385c-f024-44f1-8da3-1a0fc1178a1a added with success to project c2cffa18-b953-45ef-870e-1465bd27421e!"
+                                        },
+                                        "project": {
+                                            "$ref": '#/components/schemas/Projeto'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -432,6 +687,23 @@ module.exports = {
                     }
                 }
             },
+            "UsuarioVinculado": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    }
+                }
+            },
             "Tarefa": {
                 "type": "object",
                 "properties": {
@@ -454,21 +726,7 @@ module.exports = {
                         "$ref": "#/components/schemas/Coluna"
                     },
                     "user": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "username": {
-                                "type": "string"
-                            },
-                            "first_name": {
-                                "type": "string"
-                            },
-                            "last_name": {
-                                "type": "string"
-                            },
-                        }
+                        "$ref": "#/components/schemas/UsuarioVinculado"
                     }
                 }
             },
@@ -488,6 +746,42 @@ module.exports = {
                         "type": "string"
                     },
                 }
+            },
+            "Projeto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        type: "string"
+                    },
+                    "updatedAt": {
+                        type: "string"
+                    }
+                }
+            },
+            "ProjetoComResponsaveis": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Projeto",
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "users": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/UsuarioVinculado"
+                                }
+                            }
+                        }
+                    }
+                ]
             },
             "CriarUsuario": {
                 "type": "object",

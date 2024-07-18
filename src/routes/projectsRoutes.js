@@ -11,22 +11,19 @@ projectsRoutes.get("/projects", (req, res) =>
 projectsRoutes.get("/projects/:id", (req, res) =>
   projectController.getOneById(req, res)
 );
-projectsRoutes.get("/project/:id/users", (req, res) =>
+projectsRoutes.get("/projects/:id/users", (req, res) =>
   projectController.getProjectUsers(req, res)
 );
-projectsRoutes.post("/project", (req, res) =>
+projectsRoutes.post("/projects", (req, res) =>
   projectController.create(req, res)
 );
-projectsRoutes.post("/project/add-user", (req, res) =>
+projectsRoutes.post("/projects/add-user", (req, res) =>
   projectController.addUserToProject(req, res)
 )
-projectsRoutes.put("/project/:id", (req, res) =>
+projectsRoutes.put("/projects/:id", (req, res) =>
   projectController.update(req, res)
 );
-projectsRoutes.put("/project/:id", (req, res) =>
-  projectController.update(req, res)
-);
-projectsRoutes.delete("/project/:id", (req, res) =>
+projectsRoutes.delete("/projects/:id", (req, res) =>
   projectController.delete(req, res)
 );
 
