@@ -206,7 +206,200 @@ module.exports = {
                     }
                 }
             }
-        }
+        },
+        "/tasks": {
+            "get": {
+                "summary": "Listagem de tarefas",
+                "description": "Essa rota será responsável por listar todas as tarefas existentes no sistema",
+                "tags": ["Tarefas"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": '#/components/schemas/Tarefa'
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cadastro de tarefas",
+                "description": "Essa rota será responsável por cadastrar uma nova tarefa, deve-se passar as propriedades assigned_to e column_id para associar a um usuário responsável e a uma coluna de projeto, respectivamente.",
+                "tags": ["Tarefas"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CriarTarefa"
+                            },
+                            "examples": {
+                                "tarefa": {
+                                    "value": {
+                                        "title": "Criar header",
+                                        "description": "Criar componente de cabeçalho do site",
+                                        "assigned_to": "02fd385c-f024-44f1-8da3-1a0fc1178a1a",
+                                        "column_id": "ea09cbe9-f317-46ed-9c1a-d94060256fe4"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User created with success!"
+                                        },
+                                        "user": {
+                                            "$ref": '#/components/schemas/RespostaAoCriarUsuario'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/tasks/{id}": {
+            "get": {
+                "summary": "Busca uma tarefa por ID",
+                "description": "Essa rota será responsável por buscar uma tarefa pelo ID",
+                "tags": ["Tarefas"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da tarefa",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": '#/components/schemas/Tarefa'
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Edita uma tarefa",
+                "description": "Essa rota será responsável por editar uma tarefa pelo ID, pode-se passar no corpo da requisição apenas as informações que se deseja editar",
+                "tags": ["Tarefas"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da tarefa",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TarefaEntrada"
+                            },
+                            "examples": {
+                                "usuario": {
+                                    "value": {
+                                        "title": "Criar header",
+                                        "description": "Criar componente de cabeçalho do site",
+                                        "assigned_to": "02fd385c-f024-44f1-8da3-1a0fc1178a1a",
+                                        "column_id": "ea09cbe9-f317-46ed-9c1a-d94060256fe4"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "task width id 46fe56bd-4787-44d5-855d-453b95c99db2 updated with success!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta um tarefa",
+                "description": "Essa rota será responsável por deletar uma tarefa",
+                "tags": ["Tarefas"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da tarefa",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "task width id 15e4acbd-4991-4d89-95a0-9787467e9581 deleted with success!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -237,6 +430,63 @@ module.exports = {
                     "group": {
                         "$ref": "#/components/schemas/Grupo"
                     }
+                }
+            },
+            "Tarefa": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        type: "string"
+                    },
+                    "updatedAt": {
+                        type: "string"
+                    },
+                    "column": {
+                        "$ref": "#/components/schemas/Coluna"
+                    },
+                    "user": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "username": {
+                                "type": "string"
+                            },
+                            "first_name": {
+                                "type": "string"
+                            },
+                            "last_name": {
+                                "type": "string"
+                            },
+                        }
+                    }
+                }
+            },
+            "TarefaEntrada": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "assigned_to": {
+                        "type": "string"
+                    },
+                    "column_id": {
+                        "type": "string"
+                    },
                 }
             },
             "CriarUsuario": {
@@ -312,6 +562,17 @@ module.exports = {
                 }
             },
             "Grupo": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                }
+            },
+            "Coluna": {
                 "type": "object",
                 "properties": {
                     "id": {
